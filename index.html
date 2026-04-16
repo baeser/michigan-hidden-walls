@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>A Raisin in the Sun &amp; Michigan's Hidden Walls</title>
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --paper: #f8f5ef;
+    --accent: #a8311a;
+    --accent-soft: #f3d9d2;
+    --muted: #5a5a5a;
+    --rule: #d9d2c3;
+    --north: #2e5c8a;
+    --south: #7a3b2e;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.6;
+  }
+  header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 1.5rem 2rem;
+    border-bottom: 6px solid var(--accent);
+  }
+  header h1 {
+    margin: 0;
+    font-size: 1.6rem;
+    letter-spacing: 0.02em;
+  }
+  header p {
+    margin: 0.25rem 0 0;
+    opacity: 0.8;
+    font-size: 0.95rem;
+    font-style: italic;
+  }
+  nav.steps {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 1rem 2rem;
+    background: #fff;
+    border-bottom: 1px solid var(--rule);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  nav.steps button {
+    font-family: inherit;
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    color: var(--ink);
+    padding: 0.5rem 0.9rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    border-radius: 4px;
+    transition: all 0.15s ease;
+  }
+  nav.steps button:hover { background: var(--accent-soft); }
+  nav.steps button.active {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+  main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  section.step {
+    display: none;
+    animation: fade 0.3s ease-in;
+  }
+  section.step.active { display: block; }
+  @keyframes fade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  h2 {
+    font-size: 1.6rem;
+    color: var(--accent);
+    border-bottom: 2px solid var(--rule);
+    padding-bottom: 0.5rem;
+    margin-top: 0;
+  }
+  h3 { font-size: 1.15rem; margin-top: 1.5rem; }
+  .meta {
+    font-size: 0.85rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0.5rem;
+  }
+  .callout {
+    background: #fff;
+    border-left: 4px solid var(--accent);
+    padding: 1rem 1.25rem;
+    margin: 1.25rem 0;
+    border-radius: 0 4px 4px 0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .map-wrap {
+    position: relative;
+    width: 100%;
+    height: 520px;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    overflow: hidden;
+    margin: 1rem 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+  .map-wrap iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+  .map-hint {
+    background: #fffbe6;
+    border: 1px dashed #c9a227;
+    padding: 0.75rem 1rem;
+    font-size: 0.92rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+  }
+  .compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  @media (max-width: 680px) { .compare { grid-template-columns: 1fr; } }
+  .card {
+    background: #fff;
+    border-top: 6px solid var(--rule);
+    padding: 1.25rem;
+    border-radius: 0 0 6px 6px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  }
+  .card.north { border-top-color: var(--north); }
+  .card.south { border-top-color: var(--south); }
+  .card h4 {
+    margin: 0 0 0.5rem;
+    font-size: 1.1rem;
+  }
+  .card.north h4 { color: var(--north); }
+  .card.south h4 { color: var(--south); }
+  .card ul { padding-left: 1.2rem; margin: 0.5rem 0; }
+  .card li { margin-bottom: 0.4rem; }
+  .reveal {
+    background: #fff;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 0.75rem 1rem;
+    margin: 0.5rem 0;
+    cursor: pointer;
+  }
+  .reveal summary {
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+  }
+  .reveal[open] { background: var(--accent-soft); }
+  .prompt-box {
+    background: var(--accent-soft);
+    border: 1px solid var(--accent);
+    padding: 1rem 1.25rem;
+    border-radius: 4px;
+    margin: 1rem 0;
+  }
+  .prompt-box h4 {
+    margin: 0 0 0.5rem;
+    color: var(--accent);
+  }
+  .nav-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--rule);
+  }
+  .nav-buttons button {
+    font-family: inherit;
+    background: var(--ink);
+    color: var(--paper);
+    border: none;
+    padding: 0.6rem 1.2rem;
+    font-size: 0.95rem;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  .nav-buttons button:hover { background: var(--accent); }
+  .nav-buttons button:disabled { opacity: 0.3; cursor: not-allowed; }
+  .timer {
+    float: right;
+    font-size: 0.85rem;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 0.15rem 0.6rem;
+    border-radius: 10px;
+    font-style: italic;
+  }
+  a { color: var(--accent); }
+  .term {
+    background: var(--accent-soft);
+    padding: 0 0.25rem;
+    border-bottom: 1px dotted var(--accent);
+    cursor: help;
+  }
+  footer {
+    text-align: center;
+    padding: 1.5rem;
+    color: var(--muted);
+    font-size: 0.85rem;
+    border-top: 1px solid var(--rule);
+    margin-top: 2rem;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>A Raisin in the Sun &amp; Michigan's Hidden Walls</h1>
+  <p>How did segregation look different in the North? — A 45&ndash;60 minute inquiry</p>
+</header>
+
+<nav class="steps" id="nav"></nav>
+
+<main>
+
+  <!-- STEP 1: HOOK -->
+  <section class="step active" data-title="1. Opening">
+    <span class="timer">~5 min</span>
+    <h2>Before we begin</h2>
+    <p class="meta">Think &mdash; Write &mdash; Share</p>
+
+    <p>In <em>A Raisin in the Sun</em>, Mama Younger uses the insurance money to buy a house in <strong>Clybourne Park</strong> &mdash; a white neighborhood in Chicago. Soon after, a man named <strong>Mr. Lindner</strong> visits the family with a very polite offer.</p>
+
+    <div class="prompt-box">
+      <h4>Quick-write (3 minutes)</h4>
+      <p>When you read the Mr. Lindner scene in Act II, what was strange about <em>how</em> he tried to keep the Youngers out of Clybourne Park? He doesn't threaten them. He doesn't show a law. What <em>does</em> he do?</p>
+    </div>
+
+    <p>Today, we're going to look at a map of real properties in Michigan whose deeds contained the same kind of invisible wall Mr. Lindner was defending. Then we'll ask: <strong>how was segregation in the North different from segregation in the Deep South?</strong></p>
+  </section>
+
+  <!-- STEP 2: MAP EXPLORATION -->
+  <section class="step" data-title="2. Explore the Map">
+    <span class="timer">~12 min</span>
+    <h2>The Map: Washtenaw County, Michigan</h2>
+    <p class="meta">Exploration &mdash; work with a partner</p>
+
+    <p>This map, built by the <strong>Justice InDeed</strong> project at the University of Michigan, plots about <strong>8,500 properties</strong> in Washtenaw County &mdash; <em>our county</em> &mdash; whose original deeds contained <span class="term" title="A clause written into a property deed that prevents the house from being sold or rented to people of certain races, religions, or national origins.">racially restrictive covenants</span>.</p>
+
+    <p>Here's something worth noticing right away: <strong>there are no covenants mapped inside the City of Dexter itself</strong>. But there are plenty in the <strong>Dexter Community Schools district</strong> &mdash; most notably around the <strong>Ann Arbor Country Club</strong> and up on <strong>Baseline Lake</strong>.</p>
+
+    <div class="map-hint">
+      <strong>Your task &mdash; look close to home.</strong> With a partner:
+      <ol style="margin: 0.5rem 0 0 1rem;">
+        <li>Zoom to the <strong>Ann Arbor Country Club</strong> area (Pontiac Trail, Dexter Township). Click on <strong>two</strong> orange properties.</li>
+        <li>Then zoom up to <strong>Baseline Lake</strong> (north end of the district). Click on <strong>one</strong> more.</li>
+        <li>For each, record: (a) the year of the covenant, (b) what groups were banned, and (c) the street or lake.</li>
+      </ol>
+      <p style="margin-top: 0.6rem;"><strong>Inquiry question:</strong> Why do you think the covenants cluster around the <em>country club</em> and the <em>lake</em> &mdash; and not in the middle of town? What does that tell us about <em>who</em> these rules were really written to protect?</p>
+    </div>
+
+    <div class="map-wrap">
+      <iframe
+        src="https://umich.maps.arcgis.com/apps/instant/basic/index.html?appid=7234c85dc96b4ba2b45b20483a69fb18"
+        title="Justice InDeed interactive covenant map"
+        loading="lazy"
+        allowfullscreen>
+      </iframe>
+    </div>
+
+    <details class="reveal">
+      <summary>What is a racially restrictive covenant? (click to open)</summary>
+      <p>A covenant is a <em>contract</em> attached to a piece of property. A <strong>racially restrictive covenant</strong> was language written directly into a home's deed forbidding the owner from ever selling or renting it to Black people &mdash; and often to Jews, Asian Americans, and other groups. When you bought the house, you were legally bound by these rules.</p>
+      <p>Unlike a "Whites Only" sign at a lunch counter, this kind of segregation was <strong>private, paper, and permanent</strong>. It traveled with the property, not with any one person.</p>
+    </details>
+
+    <div class="prompt-box">
+      <h4>Pair discussion</h4>
+      <p>Share with your partner: why the <strong>Country Club</strong>? Why <strong>Baseline Lake</strong>? Who were the groups most often excluded from those properties? What does it tell you that the covenants in our school district show up around <em>recreation and wealth</em> &mdash; a golf club, a lakefront &mdash; rather than downtown?</p>
+    </div>
+  </section>
+
+  <!-- STEP 3: NORTH vs SOUTH -->
+  <section class="step" data-title="3. North vs. South">
+    <span class="timer">~12 min</span>
+    <h2>Two Kinds of Segregation</h2>
+    <p class="meta">Mini-lesson</p>
+
+    <p>When we hear "segregation," most of us picture the Deep South: "Whites Only" drinking fountains, separate schools, sit-ins at lunch counters. That was real. But it was only <em>one</em> of the systems that divided America.</p>
+
+    <div class="compare">
+      <div class="card south">
+        <h4>The Deep South — "Jim Crow"</h4>
+        <ul>
+          <li><strong>Public.</strong> Posted on signs, printed in laws.</li>
+          <li><strong>State-enforced.</strong> Police, sheriffs, judges.</li>
+          <li><strong>Everywhere visible:</strong> bathrooms, buses, schools, beaches.</li>
+          <li><strong>Legal term:</strong> <em>de jure</em> &mdash; "by law."</li>
+        </ul>
+      </div>
+      <div class="card north">
+        <h4>The North (Michigan, Illinois…)</h4>
+        <ul>
+          <li><strong>Private.</strong> Buried in deeds, contracts, bank files.</li>
+          <li><strong>Enforced by neighbors,</strong> realtors, banks, homeowner "associations."</li>
+          <li><strong>Hidden but powerful:</strong> who could buy a house, get a loan, live on a block.</li>
+          <li><strong>Legal term:</strong> <em>de facto</em> &mdash; "in fact," even when not written into law.</li>
+        </ul>
+      </div>
+    </div>
+
+    <details class="reveal">
+      <summary>Wait — weren't these covenants illegal?</summary>
+      <p>In 1948, the Supreme Court case <strong>Shelley v. Kraemer</strong> ruled that courts could no longer <em>enforce</em> racially restrictive covenants. But the covenants didn't disappear. They stayed in the deeds (many still there today), and white neighborhoods found other ways to keep Black families out: banks refusing loans (<strong>redlining</strong>), realtors refusing to show homes, and &mdash; like in the play &mdash; <strong>"improvement associations"</strong> offering to <em>buy back</em> the house from a Black family that tried to move in.</p>
+      <p>This is why <em>A Raisin in the Sun</em>, set around 1959, is so important: the Youngers are moving into Clybourne Park <em>after</em> covenants were technically unenforceable &mdash; and yet, the wall is still there. It just wears a suit and tie.</p>
+    </details>
+
+    <div class="prompt-box">
+      <h4>Turn and talk</h4>
+      <p>Why might Northern segregation have been <em>harder to fight</em> than Jim Crow in the South? (Hint: think about what a protest sign needs to point at.)</p>
+    </div>
+  </section>
+
+  <!-- STEP 4: TEXT CONNECTION -->
+  <section class="step" data-title="4. Back to the Play">
+    <span class="timer">~15 min</span>
+    <h2>Mr. Lindner Is the Map</h2>
+    <p class="meta">Close reading — Act II, Scene 3</p>
+
+    <p>Turn to the scene in <strong>Act II, Scene 3</strong> where Karl Lindner visits the Younger apartment. Have your book open to his first long speech &mdash; the one where he explains why he came.</p>
+
+    <h3>Annotate as you re-read</h3>
+    <p>With a partner, find and <strong>underline or mark</strong> examples of these moves in Lindner's dialogue:</p>
+
+    <details class="reveal">
+      <summary>1. Polite language hiding an exclusion</summary>
+      <p>Lindner never says "Black people can't live here." How does he say it instead? What words does he use for the Youngers? For Clybourne Park?</p>
+    </details>
+
+    <details class="reveal">
+      <summary>2. An appeal to "the community"</summary>
+      <p>He talks about what "our people" want, what "people get awful worked up" about. Who counts as "people" in his sentences? Who doesn't?</p>
+    </details>
+
+    <details class="reveal">
+      <summary>3. A financial offer instead of a threat</summary>
+      <p>Lindner doesn't bring a mob. He brings a checkbook. Why is that arguably <em>more insulting</em> to the Youngers &mdash; and more dangerous as a system?</p>
+    </details>
+
+    <details class="reveal">
+      <summary>4. The word "association"</summary>
+      <p>Lindner represents the "Clybourne Park Improvement Association." Go back to the map you just explored. How were the covenants in Washtenaw County <em>also</em> often written and enforced by neighborhood "associations"? What does that word hide?</p>
+    </details>
+
+    <div class="prompt-box">
+      <h4>Claim to defend</h4>
+      <p>"Karl Lindner is not an exception. He is the <em>Northern system</em> wearing a human face." Do you agree? Find one line from the play and one detail from the covenant map that supports your answer.</p>
+    </div>
+  </section>
+
+  <!-- STEP 5: SYNTHESIS -->
+  <section class="step" data-title="5. Exit Ticket">
+    <span class="timer">~8 min</span>
+    <h2>Exit Ticket</h2>
+    <p class="meta">Write individually &mdash; hand in before leaving</p>
+
+    <p>Respond in <strong>4&ndash;6 sentences</strong>. Use at least one specific detail from the covenant map and one specific moment from <em>A Raisin in the Sun</em>.</p>
+
+    <div class="prompt-box">
+      <h4>Prompt</h4>
+      <p>Lorraine Hansberry set <em>A Raisin in the Sun</em> in Chicago, not Alabama. Based on what you learned today, why does that matter? What does the Younger family's struggle reveal about segregation in the North that a story set in the Deep South might <em>not</em> show us?</p>
+    </div>
+
+    <h3>Challenge question (if time)</h3>
+    <p>Many of the covenants on the Michigan map &mdash; including ones right here in Dexter and Washtenaw County &mdash; are <em>still in the deeds today</em>, even though they can't be enforced. Should they be removed? Left as a historical record? Something else? Defend your position in one sentence.</p>
+
+    <div class="callout">
+      <strong>&#128190; Printable exit ticket:</strong> Your teacher has a PDF version of this exit ticket (<a href="exit_ticket.pdf" target="_blank" rel="noopener">exit_ticket.pdf</a>). Fill it out, then upload it to Canvas for participation credit.
+    </div>
+
+    <details class="reveal">
+      <summary>For further reading (optional)</summary>
+      <ul>
+        <li><a href="https://www.justiceindeedmi.org/maps-and-data" target="_blank" rel="noopener">Justice InDeed: Maps and Data</a> &mdash; the full project behind the map</li>
+        <li><a href="https://www.canr.msu.edu/redlining/detroit" target="_blank" rel="noopener">Redlining in Michigan: Detroit</a> &mdash; MSU's companion project</li>
+        <li><a href="https://quadrangle.michigan.law.umich.edu/issues/fall-2022/legacy-bigoted-deeds-ann-arbor" target="_blank" rel="noopener">"A Legacy of Bigoted Deeds in Ann Arbor"</a> &mdash; U-M Law Quadrangle article</li>
+        <li><strong>Shelley v. Kraemer (1948)</strong> &mdash; the Supreme Court case that ended court enforcement of racial covenants</li>
+      </ul>
+    </details>
+  </section>
+
+  <div class="nav-buttons">
+    <button id="prev">&larr; Back</button>
+    <button id="next">Next &rarr;</button>
+  </div>
+
+</main>
+
+<footer>
+  Map data: <a href="https://www.justiceindeedmi.org/" target="_blank" rel="noopener">Justice InDeed</a>, University of Michigan.
+  Lesson designed for high-school readers of <em>A Raisin in the Sun</em>.
+</footer>
+
+<script>
+  const steps = document.querySelectorAll('section.step');
+  const nav = document.getElementById('nav');
+  const prev = document.getElementById('prev');
+  const next = document.getElementById('next');
+  let current = 0;
+
+  // Build nav buttons from section titles
+  steps.forEach((s, i) => {
+    const btn = document.createElement('button');
+    btn.textContent = s.dataset.title;
+    btn.addEventListener('click', () => go(i));
+    nav.appendChild(btn);
+  });
+
+  function go(i) {
+    current = Math.max(0, Math.min(steps.length - 1, i));
+    steps.forEach((s, idx) => s.classList.toggle('active', idx === current));
+    nav.querySelectorAll('button').forEach((b, idx) => b.classList.toggle('active', idx === current));
+    prev.disabled = current === 0;
+    next.disabled = current === steps.length - 1;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  prev.addEventListener('click', () => go(current - 1));
+  next.addEventListener('click', () => go(current + 1));
+  go(0);
+</script>
+
+</body>
+</html>

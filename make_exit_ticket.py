@@ -68,7 +68,7 @@ c.drawString(MARGIN, y, "1.  WHAT YOU FOUND ON THE MAP")
 c.setFillColor(MUTED)
 c.setFont("Helvetica-Oblique", 8)
 c.drawString(MARGIN, y - 0.15 * inch,
-             "Record two covenants from our school district \u2014 try the Ann Arbor Country Club area or Baseline Lake.")
+             "Record two covenants from our school district \u2014 try the Ann Arbor Country Club area or Portage Lake.")
 
 # Table for map findings
 y -= 0.30 * inch
@@ -129,7 +129,7 @@ prompt_style = ParagraphStyle(
 prompt_text = (
     "<b>Prompt:</b> Lorraine Hansberry set <i>A Raisin in the Sun</i> in Chicago, "
     "not Alabama. Based on today's lesson \u2014 and what you saw on the map "
-    "around the <b>Ann Arbor Country Club</b> and <b>Baseline Lake</b> \u2014 "
+    "around the <b>Ann Arbor Country Club</b> and <b>Portage Lake</b> \u2014 "
     "<b>why does that matter?</b> What does the Younger family's struggle reveal "
     "about segregation in the North that a story set in the Deep South might "
     "<i>not</i> show us? <b>Use one specific detail from the covenant map and "
@@ -176,7 +176,7 @@ challenge_style = ParagraphStyle(
     alignment=TA_LEFT,
 )
 challenge_text = (
-    "Covenants in our school district \u2014 at the Country Club, on Baseline Lake \u2014 "
+    "Covenants in our school district \u2014 at the Country Club, on Portage Lake \u2014 "
     "are still in the deeds today. Should they be removed, kept as history, or something else?"
 )
 cp = Paragraph(challenge_text, challenge_style)

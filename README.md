@@ -7,7 +7,7 @@ covenant map to compare segregation in the North vs. the Deep South.
 **Live lesson:** https://baeser.github.io/michigan-hidden-walls/
 
 Built for **Dexter Community Schools** with local anchors at the Ann Arbor
-Country Club and Baseline Lake.
+Country Club and Portage Lake.
 
 ## What's here
 
@@ -18,7 +18,7 @@ Country Club and Baseline Lake.
 ## Lesson flow
 
 1. **Opening quick-write** — how does Mr. Lindner keep the Youngers out?
-2. **Explore the map** — partner task clicking covenants around the Country Club and Baseline Lake
+2. **Explore the map** — partner task clicking covenants around the Country Club and Portage Lake
 3. **North vs. South** — *de jure* vs. *de facto* segregation
 4. **Back to the play** — close reading of Act II, Scene 3
 5. **Exit ticket** — written response, turned in via the printable PDF

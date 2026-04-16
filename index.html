@@ -40,6 +40,43 @@
     font-size: 0.95rem;
     font-style: italic;
   }
+
+  /* Student info bar */
+  .student-bar {
+    background: #fff;
+    border-bottom: 1px solid var(--rule);
+    padding: 0.75rem 2rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+    font-size: 0.92rem;
+  }
+  .student-bar label {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-weight: bold;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    color: var(--muted);
+  }
+  .student-bar input {
+    font-family: inherit;
+    font-size: 0.95rem;
+    border: none;
+    border-bottom: 1.5px solid var(--ink);
+    background: transparent;
+    padding: 0.2rem 0.3rem;
+    outline: none;
+    min-width: 0;
+  }
+  .student-bar input:focus { border-bottom-color: var(--accent); }
+  .student-bar .f-name { width: 14rem; }
+  .student-bar .f-date { width: 7rem; }
+  .student-bar .f-hour { width: 3rem; }
+
   nav.steps {
     display: flex;
     flex-wrap: wrap;
@@ -125,6 +162,37 @@
     border-radius: 4px;
     margin-bottom: 1rem;
   }
+
+  /* Map findings table (student input) */
+  .findings {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    margin: 1rem 0;
+    font-size: 0.92rem;
+  }
+  .findings th, .findings td {
+    border: 1px solid var(--rule);
+    padding: 0.4rem;
+    text-align: left;
+    vertical-align: top;
+  }
+  .findings th {
+    background: var(--accent-soft);
+    font-size: 0.82rem;
+    letter-spacing: 0.04em;
+  }
+  .findings input {
+    width: 100%;
+    font-family: inherit;
+    font-size: 0.92rem;
+    border: none;
+    background: transparent;
+    padding: 0.3rem 0.2rem;
+    outline: none;
+  }
+  .findings input:focus { background: #fffbe6; }
+
   .compare {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -174,6 +242,33 @@
     margin: 0 0 0.5rem;
     color: var(--accent);
   }
+
+  /* Student response boxes (contenteditable) */
+  .response-box {
+    min-height: 5rem;
+    background: #fff;
+    border: 1.5px solid var(--rule);
+    border-radius: 4px;
+    padding: 0.75rem 1rem;
+    margin-top: 0.6rem;
+    font-family: Georgia, serif;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  .response-box:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-soft);
+  }
+  .response-box[data-empty="true"]::before {
+    content: attr(data-placeholder);
+    color: #aaa;
+    font-style: italic;
+  }
+  .response-box[data-small="true"] { min-height: 3rem; }
+
   .nav-buttons {
     display: flex;
     justify-content: space-between;
@@ -209,6 +304,38 @@
     border-bottom: 1px dotted var(--accent);
     cursor: help;
   }
+
+  /* Submit button */
+  .submit-block {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 1.25rem 1.5rem;
+    border-radius: 6px;
+    margin: 1.5rem 0;
+    text-align: center;
+  }
+  .submit-block p { margin: 0 0 0.75rem; font-size: 0.95rem; }
+  .submit-btn {
+    font-family: inherit;
+    font-size: 1.05rem;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    letter-spacing: 0.02em;
+  }
+  .submit-btn:hover { background: #c13d22; }
+  .save-indicator {
+    font-size: 0.8rem;
+    color: var(--muted);
+    font-style: italic;
+    margin-top: 0.5rem;
+    height: 1.1em;
+  }
+
   footer {
     text-align: center;
     padding: 1.5rem;
@@ -217,14 +344,127 @@
     border-top: 1px solid var(--rule);
     margin-top: 2rem;
   }
+
+  /* ==========================================================
+     PRINTABLE EXIT TICKET — hidden on screen, shown on print
+     ========================================================== */
+  #printable { display: none; }
+
+  @media print {
+    @page { size: letter; margin: 0.55in; }
+    body { background: #fff; color: #000; font-family: Georgia, serif; }
+    /* Hide everything except #printable */
+    body > *:not(#printable) { display: none !important; }
+    #printable { display: block !important; }
+  }
+  #printable .p-header {
+    background: #1a1a1a;
+    color: #fff;
+    padding: 14px 18px 10px;
+    margin: 0 0 8px 0;
+    border-bottom: 3px solid #a8311a;
+  }
+  #printable .p-header h1 {
+    margin: 0;
+    font-family: Georgia, serif;
+    font-size: 18pt;
+    letter-spacing: 0.02em;
+  }
+  #printable .p-header .p-sub {
+    font-style: italic;
+    font-size: 10pt;
+    margin-top: 2px;
+  }
+  #printable .p-meta {
+    display: flex;
+    gap: 2rem;
+    font-size: 10pt;
+    padding: 0 0 10px;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 10px;
+  }
+  #printable .p-meta .lbl {
+    font-weight: bold;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-size: 8pt;
+    color: #555;
+    margin-right: 6px;
+  }
+  #printable h2 {
+    color: #a8311a;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 11pt;
+    margin: 14px 0 4px;
+    border: none;
+    padding: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  #printable .p-prompt {
+    font-size: 9pt;
+    font-style: italic;
+    color: #444;
+    margin: 0 0 6px;
+  }
+  #printable .p-answer {
+    font-size: 10.5pt;
+    line-height: 1.45;
+    white-space: pre-wrap;
+    min-height: 1em;
+    padding: 4px 2px;
+    border-bottom: 1px dotted #bbb;
+    page-break-inside: avoid;
+  }
+  #printable .p-answer:empty::before {
+    content: "(no response)";
+    color: #bbb;
+    font-style: italic;
+  }
+  #printable table.p-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 9.5pt;
+    margin-top: 4px;
+  }
+  #printable table.p-table th,
+  #printable table.p-table td {
+    border: 1px solid #999;
+    padding: 4px 6px;
+    text-align: left;
+    vertical-align: top;
+  }
+  #printable table.p-table th {
+    background: #f3d9d2;
+    font-size: 8.5pt;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  #printable .p-footer {
+    margin-top: 14px;
+    font-size: 8pt;
+    color: #666;
+    font-style: italic;
+    border-top: 1px solid #ccc;
+    padding-top: 6px;
+    display: flex;
+    justify-content: space-between;
+  }
 </style>
 </head>
 <body>
 
 <header>
   <h1>A Raisin in the Sun &amp; Michigan's Hidden Walls</h1>
-  <p>How did segregation look different in the North? — A 45&ndash;60 minute inquiry</p>
+  <p>How did segregation look different in the North? &mdash; A 45&ndash;60 minute inquiry</p>
 </header>
+
+<!-- Student info bar (filled by student, carried into PDF) -->
+<div class="student-bar">
+  <label>Name <input id="f-name" class="f-name" type="text" autocomplete="off" /></label>
+  <label>Date <input id="f-date" class="f-date" type="text" autocomplete="off" placeholder="mm/dd" /></label>
+  <label>Hour <input id="f-hour" class="f-hour" type="text" autocomplete="off" /></label>
+</div>
 
 <nav class="steps" id="nav"></nav>
 
@@ -241,6 +481,10 @@
     <div class="prompt-box">
       <h4>Quick-write (3 minutes)</h4>
       <p>When you read the Mr. Lindner scene in Act II, what was strange about <em>how</em> he tried to keep the Youngers out of Clybourne Park? He doesn't threaten them. He doesn't show a law. What <em>does</em> he do?</p>
+      <div class="response-box"
+           id="f-quickwrite"
+           contenteditable="true"
+           data-placeholder="Type your response here &mdash; it will be saved to your exit ticket PDF at the end."></div>
     </div>
 
     <p>Today, we're going to look at a map of real properties in Michigan whose deeds contained the same kind of invisible wall Mr. Lindner was defending. Then we'll ask: <strong>how was segregation in the North different from segregation in the Deep South?</strong></p>
@@ -254,14 +498,14 @@
 
     <p>This map, built by the <strong>Justice InDeed</strong> project at the University of Michigan, plots about <strong>8,500 properties</strong> in Washtenaw County &mdash; <em>our county</em> &mdash; whose original deeds contained <span class="term" title="A clause written into a property deed that prevents the house from being sold or rented to people of certain races, religions, or national origins.">racially restrictive covenants</span>.</p>
 
-    <p>Here's something worth noticing right away: <strong>there are no covenants mapped inside the City of Dexter itself</strong>. But there are plenty in the <strong>Dexter Community Schools district</strong> &mdash; most notably around the <strong>Ann Arbor Country Club</strong> and up on <strong>Baseline Lake</strong>.</p>
+    <p>Here's something worth noticing right away: <strong>there are no covenants mapped inside the City of Dexter itself</strong>. But there are plenty in the <strong>Dexter Community Schools district</strong> &mdash; most notably around the <strong>Ann Arbor Country Club</strong> and up on <strong>Portage Lake</strong>.</p>
 
     <div class="map-hint">
       <strong>Your task &mdash; look close to home.</strong> With a partner:
       <ol style="margin: 0.5rem 0 0 1rem;">
         <li>Zoom to the <strong>Ann Arbor Country Club</strong> area (Pontiac Trail, Dexter Township). Click on <strong>two</strong> orange properties.</li>
-        <li>Then zoom up to <strong>Baseline Lake</strong> (north end of the district). Click on <strong>one</strong> more.</li>
-        <li>For each, record: (a) the year of the covenant, (b) what groups were banned, and (c) the street or lake.</li>
+        <li>Then zoom up to <strong>Portage Lake</strong>. Click on <strong>one</strong> more.</li>
+        <li>For each, record below: (a) the year of the covenant, (b) what groups were banned, and (c) the street or lake.</li>
       </ol>
       <p style="margin-top: 0.6rem;"><strong>Inquiry question:</strong> Why do you think the covenants cluster around the <em>country club</em> and the <em>lake</em> &mdash; and not in the middle of town? What does that tell us about <em>who</em> these rules were really written to protect?</p>
     </div>
@@ -275,6 +519,38 @@
       </iframe>
     </div>
 
+    <h3>Record your findings</h3>
+    <table class="findings">
+      <thead>
+        <tr>
+          <th style="width: 28%;">Street / Location</th>
+          <th style="width: 14%;">Year</th>
+          <th style="width: 28%;">Groups Excluded</th>
+          <th style="width: 30%;">Anything that stood out</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input id="f-row1-street" type="text" /></td>
+          <td><input id="f-row1-year" type="text" /></td>
+          <td><input id="f-row1-groups" type="text" /></td>
+          <td><input id="f-row1-note" type="text" /></td>
+        </tr>
+        <tr>
+          <td><input id="f-row2-street" type="text" /></td>
+          <td><input id="f-row2-year" type="text" /></td>
+          <td><input id="f-row2-groups" type="text" /></td>
+          <td><input id="f-row2-note" type="text" /></td>
+        </tr>
+        <tr>
+          <td><input id="f-row3-street" type="text" /></td>
+          <td><input id="f-row3-year" type="text" /></td>
+          <td><input id="f-row3-groups" type="text" /></td>
+          <td><input id="f-row3-note" type="text" /></td>
+        </tr>
+      </tbody>
+    </table>
+
     <details class="reveal">
       <summary>What is a racially restrictive covenant? (click to open)</summary>
       <p>A covenant is a <em>contract</em> attached to a piece of property. A <strong>racially restrictive covenant</strong> was language written directly into a home's deed forbidding the owner from ever selling or renting it to Black people &mdash; and often to Jews, Asian Americans, and other groups. When you bought the house, you were legally bound by these rules.</p>
@@ -283,7 +559,7 @@
 
     <div class="prompt-box">
       <h4>Pair discussion</h4>
-      <p>Share with your partner: why the <strong>Country Club</strong>? Why <strong>Baseline Lake</strong>? Who were the groups most often excluded from those properties? What does it tell you that the covenants in our school district show up around <em>recreation and wealth</em> &mdash; a golf club, a lakefront &mdash; rather than downtown?</p>
+      <p>Share with your partner: why the <strong>Country Club</strong>? Why <strong>Portage Lake</strong>? Who were the groups most often excluded from those properties? What does it tell you that the covenants in our school district show up around <em>recreation and wealth</em> &mdash; a golf club, a lakefront &mdash; rather than downtown?</p>
     </div>
   </section>
 
@@ -323,8 +599,12 @@
     </details>
 
     <div class="prompt-box">
-      <h4>Turn and talk</h4>
+      <h4>Write your response</h4>
       <p>Why might Northern segregation have been <em>harder to fight</em> than Jim Crow in the South? (Hint: think about what a protest sign needs to point at.)</p>
+      <div class="response-box"
+           id="f-northsouth"
+           contenteditable="true"
+           data-placeholder="Type your response here &mdash; it will be saved to your exit ticket PDF at the end."></div>
     </div>
   </section>
 
@@ -362,6 +642,10 @@
     <div class="prompt-box">
       <h4>Claim to defend</h4>
       <p>"Karl Lindner is not an exception. He is the <em>Northern system</em> wearing a human face." Do you agree? Find one line from the play and one detail from the covenant map that supports your answer.</p>
+      <div class="response-box"
+           id="f-claim"
+           contenteditable="true"
+           data-placeholder="Type your response here."></div>
     </div>
   </section>
 
@@ -369,20 +653,33 @@
   <section class="step" data-title="5. Exit Ticket">
     <span class="timer">~8 min</span>
     <h2>Exit Ticket</h2>
-    <p class="meta">Write individually &mdash; hand in before leaving</p>
+    <p class="meta">Write individually &mdash; then generate your PDF and upload to Canvas</p>
 
     <p>Respond in <strong>4&ndash;6 sentences</strong>. Use at least one specific detail from the covenant map and one specific moment from <em>A Raisin in the Sun</em>.</p>
 
     <div class="prompt-box">
       <h4>Prompt</h4>
-      <p>Lorraine Hansberry set <em>A Raisin in the Sun</em> in Chicago, not Alabama. Based on what you learned today, why does that matter? What does the Younger family's struggle reveal about segregation in the North that a story set in the Deep South might <em>not</em> show us?</p>
+      <p>Lorraine Hansberry set <em>A Raisin in the Sun</em> in Chicago, not Alabama. Based on what you learned today &mdash; and what you saw on the map around the <strong>Ann Arbor Country Club</strong> and <strong>Portage Lake</strong> &mdash; why does that matter? What does the Younger family's struggle reveal about segregation in the North that a story set in the Deep South might <em>not</em> show us?</p>
+      <div class="response-box"
+           id="f-exitticket"
+           contenteditable="true"
+           data-placeholder="Type your 4&ndash;6 sentence response here."
+           style="min-height: 8rem;"></div>
     </div>
 
-    <h3>Challenge question (if time)</h3>
-    <p>Many of the covenants on the Michigan map &mdash; including ones right here in Dexter and Washtenaw County &mdash; are <em>still in the deeds today</em>, even though they can't be enforced. Should they be removed? Left as a historical record? Something else? Defend your position in one sentence.</p>
+    <h3>Challenge question</h3>
+    <p>Covenants in our school district &mdash; at the Country Club, on Portage Lake &mdash; are <em>still in the deeds today</em>, even though they can't be enforced. Should they be removed? Left as a historical record? Something else? Defend your position in one sentence.</p>
+    <div class="response-box"
+         id="f-challenge"
+         contenteditable="true"
+         data-placeholder="Type your one-sentence answer."
+         data-small="true"></div>
 
-    <div class="callout">
-      <strong>&#128190; Printable exit ticket:</strong> Your teacher has a PDF version of this exit ticket (<a href="exit_ticket.pdf" target="_blank" rel="noopener">exit_ticket.pdf</a>). Fill it out, then upload it to Canvas for participation credit.
+    <!-- Submit button -->
+    <div class="submit-block">
+      <p>When you're finished, click below to generate a PDF of your responses. Save it as a PDF, then upload to Canvas for participation credit.</p>
+      <button class="submit-btn" id="submit-btn" type="button">📄 Generate my Exit Ticket (PDF)</button>
+      <div class="save-indicator" id="save-indicator"></div>
     </div>
 
     <details class="reveal">
@@ -408,14 +705,62 @@
   Lesson designed for high-school readers of <em>A Raisin in the Sun</em>.
 </footer>
 
+<!-- =============================================================
+     PRINTABLE EXIT TICKET  (hidden on screen, populated on Submit)
+     ============================================================= -->
+<section id="printable" aria-hidden="true">
+  <div class="p-header">
+    <h1>EXIT TICKET</h1>
+    <div class="p-sub">A Raisin in the Sun &nbsp;&bull;&nbsp; Michigan's Hidden Walls</div>
+  </div>
+  <div class="p-meta">
+    <div><span class="lbl">Name</span><span id="p-name"></span></div>
+    <div><span class="lbl">Date</span><span id="p-date"></span></div>
+    <div><span class="lbl">Hour</span><span id="p-hour"></span></div>
+  </div>
+
+  <h2>1. Quick-write (Opening)</h2>
+  <p class="p-prompt">What was strange about <em>how</em> Mr. Lindner tried to keep the Youngers out of Clybourne Park?</p>
+  <div class="p-answer" id="p-quickwrite"></div>
+
+  <h2>2. Map Findings</h2>
+  <p class="p-prompt">Covenants near the Ann Arbor Country Club or Portage Lake.</p>
+  <table class="p-table">
+    <thead>
+      <tr><th>Street / Location</th><th>Year</th><th>Groups Excluded</th><th>Anything that stood out</th></tr>
+    </thead>
+    <tbody id="p-findings"></tbody>
+  </table>
+
+  <h2>3. Response: Why was Northern segregation harder to fight?</h2>
+  <p class="p-prompt">(Hint: think about what a protest sign needs to point at.)</p>
+  <div class="p-answer" id="p-northsouth"></div>
+
+  <h2>4. Claim to Defend</h2>
+  <p class="p-prompt">Is Karl Lindner the Northern system wearing a human face?</p>
+  <div class="p-answer" id="p-claim"></div>
+
+  <h2>5. Short Response (Exit Ticket)</h2>
+  <p class="p-prompt">Why does setting <em>A Raisin in the Sun</em> in Chicago, not Alabama, matter?</p>
+  <div class="p-answer" id="p-exitticket"></div>
+
+  <h2>6. Challenge: should the covenants still in our deeds be removed?</h2>
+  <div class="p-answer" id="p-challenge"></div>
+
+  <div class="p-footer">
+    <span>Map source: Justice InDeed, University of Michigan</span>
+    <span>Submitted via Canvas &bull; Dexter Community Schools</span>
+  </div>
+</section>
+
 <script>
+  // ----- Step navigation -----
   const steps = document.querySelectorAll('section.step');
   const nav = document.getElementById('nav');
   const prev = document.getElementById('prev');
   const next = document.getElementById('next');
   let current = 0;
 
-  // Build nav buttons from section titles
   steps.forEach((s, i) => {
     const btn = document.createElement('button');
     btn.textContent = s.dataset.title;
@@ -435,6 +780,111 @@
   prev.addEventListener('click', () => go(current - 1));
   next.addEventListener('click', () => go(current + 1));
   go(0);
+
+  // ----- Placeholder handling for contenteditable -----
+  function refreshPlaceholder(el) {
+    const isEmpty = el.textContent.trim().length === 0;
+    el.setAttribute('data-empty', isEmpty ? 'true' : 'false');
+  }
+  document.querySelectorAll('.response-box').forEach(el => {
+    refreshPlaceholder(el);
+    el.addEventListener('input', () => refreshPlaceholder(el));
+    el.addEventListener('blur', () => refreshPlaceholder(el));
+  });
+
+  // ----- localStorage autosave -----
+  const FIELDS_TEXT = ['f-name','f-date','f-hour',
+    'f-row1-street','f-row1-year','f-row1-groups','f-row1-note',
+    'f-row2-street','f-row2-year','f-row2-groups','f-row2-note',
+    'f-row3-street','f-row3-year','f-row3-groups','f-row3-note'];
+  const FIELDS_RICH = ['f-quickwrite','f-northsouth','f-claim','f-exitticket','f-challenge'];
+  const STORAGE_KEY = 'hiddenwalls-v1';
+
+  function loadState() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return;
+      const data = JSON.parse(raw);
+      FIELDS_TEXT.forEach(id => { if (data[id] !== undefined) document.getElementById(id).value = data[id]; });
+      FIELDS_RICH.forEach(id => {
+        if (data[id] !== undefined) {
+          document.getElementById(id).textContent = data[id];
+          refreshPlaceholder(document.getElementById(id));
+        }
+      });
+    } catch (e) { /* ignore */ }
+  }
+
+  let saveTimer;
+  function saveState() {
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(() => {
+      const data = {};
+      FIELDS_TEXT.forEach(id => { data[id] = document.getElementById(id).value; });
+      FIELDS_RICH.forEach(id => { data[id] = document.getElementById(id).textContent; });
+      try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch (e) {}
+      const ind = document.getElementById('save-indicator');
+      if (ind) {
+        ind.textContent = 'Saved locally ✓';
+        setTimeout(() => { if (ind.textContent === 'Saved locally ✓') ind.textContent = ''; }, 1500);
+      }
+    }, 350);
+  }
+
+  FIELDS_TEXT.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('input', saveState);
+  });
+  FIELDS_RICH.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('input', saveState);
+  });
+
+  loadState();
+
+  // ----- Generate PDF (populate printable, then window.print) -----
+  function populatePrintable() {
+    document.getElementById('p-name').textContent = document.getElementById('f-name').value || '—';
+    document.getElementById('p-date').textContent = document.getElementById('f-date').value || '—';
+    document.getElementById('p-hour').textContent = document.getElementById('f-hour').value || '—';
+
+    document.getElementById('p-quickwrite').textContent = document.getElementById('f-quickwrite').textContent;
+    document.getElementById('p-northsouth').textContent = document.getElementById('f-northsouth').textContent;
+    document.getElementById('p-claim').textContent = document.getElementById('f-claim').textContent;
+    document.getElementById('p-exitticket').textContent = document.getElementById('f-exitticket').textContent;
+    document.getElementById('p-challenge').textContent = document.getElementById('f-challenge').textContent;
+
+    const tbody = document.getElementById('p-findings');
+    tbody.innerHTML = '';
+    for (let r = 1; r <= 3; r++) {
+      const street = document.getElementById(`f-row${r}-street`).value.trim();
+      const year = document.getElementById(`f-row${r}-year`).value.trim();
+      const groups = document.getElementById(`f-row${r}-groups`).value.trim();
+      const note = document.getElementById(`f-row${r}-note`).value.trim();
+      if (!street && !year && !groups && !note) continue;
+      const tr = document.createElement('tr');
+      tr.innerHTML = `<td>${escapeHTML(street)}</td><td>${escapeHTML(year)}</td><td>${escapeHTML(groups)}</td><td>${escapeHTML(note)}</td>`;
+      tbody.appendChild(tr);
+    }
+    if (!tbody.children.length) {
+      tbody.innerHTML = '<tr><td colspan="4" style="color:#bbb;font-style:italic;">(no findings recorded)</td></tr>';
+    }
+  }
+  function escapeHTML(s) {
+    return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]);
+  }
+
+  document.getElementById('submit-btn').addEventListener('click', () => {
+    if (!document.getElementById('f-name').value.trim()) {
+      alert('Add your name at the top of the page before generating the PDF.');
+      document.getElementById('f-name').focus();
+      return;
+    }
+    populatePrintable();
+    const ind = document.getElementById('save-indicator');
+    if (ind) ind.textContent = 'Opening print dialog — choose "Save as PDF"';
+    setTimeout(() => window.print(), 150);
+  });
 </script>
 
 </body>

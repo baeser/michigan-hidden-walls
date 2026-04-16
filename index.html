@@ -559,7 +559,11 @@
 
     <div class="prompt-box">
       <h4>Pair discussion</h4>
-      <p>Share with your partner: why the <strong>Country Club</strong>? Why <strong>Portage Lake</strong>? Who were the groups most often excluded from those properties? What does it tell you that the covenants in our school district show up around <em>recreation and wealth</em> &mdash; a golf club, a lakefront &mdash; rather than downtown?</p>
+      <p>Share with your partner, then type your answer below: why the <strong>Country Club</strong>? Why <strong>Portage Lake</strong>? Who were the groups most often excluded from those properties? What does it tell you that the covenants in our school district show up around <em>recreation and wealth</em> &mdash; a golf club, a lakefront &mdash; rather than downtown?</p>
+      <div class="response-box"
+           id="f-pairdiscussion"
+           contenteditable="true"
+           data-placeholder="Type what you and your partner discussed."></div>
     </div>
   </section>
 
@@ -732,19 +736,23 @@
     <tbody id="p-findings"></tbody>
   </table>
 
-  <h2>3. Response: Why was Northern segregation harder to fight?</h2>
+  <h2>3. Pair Discussion: why the Country Club and Portage Lake?</h2>
+  <p class="p-prompt">Why did covenants cluster around recreation and wealth rather than downtown?</p>
+  <div class="p-answer" id="p-pairdiscussion"></div>
+
+  <h2>4. Response: Why was Northern segregation harder to fight?</h2>
   <p class="p-prompt">(Hint: think about what a protest sign needs to point at.)</p>
   <div class="p-answer" id="p-northsouth"></div>
 
-  <h2>4. Claim to Defend</h2>
+  <h2>5. Claim to Defend</h2>
   <p class="p-prompt">Is Karl Lindner the Northern system wearing a human face?</p>
   <div class="p-answer" id="p-claim"></div>
 
-  <h2>5. Short Response (Exit Ticket)</h2>
+  <h2>6. Short Response (Exit Ticket)</h2>
   <p class="p-prompt">Why does setting <em>A Raisin in the Sun</em> in Chicago, not Alabama, matter?</p>
   <div class="p-answer" id="p-exitticket"></div>
 
-  <h2>6. Challenge: should the covenants still in our deeds be removed?</h2>
+  <h2>7. Challenge: should the covenants still in our deeds be removed?</h2>
   <div class="p-answer" id="p-challenge"></div>
 
   <div class="p-footer">
@@ -797,7 +805,7 @@
     'f-row1-street','f-row1-year','f-row1-groups','f-row1-note',
     'f-row2-street','f-row2-year','f-row2-groups','f-row2-note',
     'f-row3-street','f-row3-year','f-row3-groups','f-row3-note'];
-  const FIELDS_RICH = ['f-quickwrite','f-northsouth','f-claim','f-exitticket','f-challenge'];
+  const FIELDS_RICH = ['f-quickwrite','f-pairdiscussion','f-northsouth','f-claim','f-exitticket','f-challenge'];
   const STORAGE_KEY = 'hiddenwalls-v1';
 
   function loadState() {
@@ -849,6 +857,7 @@
     document.getElementById('p-hour').textContent = document.getElementById('f-hour').value || '—';
 
     document.getElementById('p-quickwrite').textContent = document.getElementById('f-quickwrite').textContent;
+    document.getElementById('p-pairdiscussion').textContent = document.getElementById('f-pairdiscussion').textContent;
     document.getElementById('p-northsouth').textContent = document.getElementById('f-northsouth').textContent;
     document.getElementById('p-claim').textContent = document.getElementById('f-claim').textContent;
     document.getElementById('p-exitticket').textContent = document.getElementById('f-exitticket').textContent;

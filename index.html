@@ -291,9 +291,18 @@
   }
   .family.a { border-top-color: var(--north); }
   .family.b { border-top-color: var(--accent); }
+  .family.c { border-top-color: #8b7341; }
   .family h4 { margin: 0 0 0.5rem; font-size: 1rem; }
   .family.a h4 { color: var(--north); }
   .family.b h4 { color: var(--accent); }
+  .family.c h4 { color: #8b7341; }
+  .city-compare {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+    margin: 1.25rem 0;
+  }
+  @media (max-width: 820px) { .city-compare { grid-template-columns: 1fr; } }
   .family ul { margin: 0.5rem 0 0; padding-left: 1.1rem; }
   .family li { margin-bottom: 0.35rem; line-height: 1.4; }
 
@@ -827,16 +836,24 @@
       The typical white family holds about <strong>6&times;</strong> the wealth of the typical Black family &mdash; and housing is the biggest driver of that gap.
     </div>
 
-    <h3>Closer to home: Ann Arbor vs. Ypsilanti</h3>
-    <p>You don't have to look at national averages to see this. Two cities in our own county, <strong>7 miles apart</strong> on U.S. 23, tell the same story in miniature. One side of that highway got the covenants, the country clubs, and the university. The other side got the factories that hired the Black workers who were blocked out.</p>
+    <h3>Closer to home: Dexter, Ann Arbor, Ypsilanti</h3>
+    <p>You don't have to look at national averages to see this. Three cities in our own county &mdash; a <strong>25-minute drive</strong> straight down I-94 crosses all three. Same county, same economy, same hospitals. But look at what 80 years of the system sorted into each one:</p>
 
-    <div class="family-compare">
+    <div class="city-compare">
+      <div class="family c">
+        <h4>Dexter</h4>
+        <ul>
+          <li><strong>Median home value:</strong> ~$560,000</li>
+          <li><strong>Black residents:</strong> about 1%</li>
+          <li>Dexter has <em>almost no covenants</em> on the map &mdash; and yet it looks exactly like the outcome covenants were designed to produce.</li>
+        </ul>
+      </div>
       <div class="family a">
         <h4>Ann Arbor</h4>
         <ul>
-          <li><strong>Median home value:</strong> ~$500,000</li>
+          <li><strong>Median home value:</strong> ~$510,000</li>
           <li><strong>Black residents:</strong> about 7%</li>
-          <li>Many of its historically "exclusive" neighborhoods were protected by the same kind of covenants you just saw on the map.</li>
+          <li>Thousands of covenants on the map &mdash; especially in its "exclusive" neighborhoods. They protected high property values for generations.</li>
         </ul>
       </div>
       <div class="family b">
@@ -844,18 +861,21 @@
         <ul>
           <li><strong>Median home value:</strong> ~$215,000</li>
           <li><strong>Black residents:</strong> about 29%</li>
-          <li>During WWII, thousands of Black families came here to work at the Willow Run bomber plant &mdash; partly <em>because</em> they couldn't buy in Ann Arbor.</li>
+          <li>Where Black families were steered. Thousands came to work at the Willow Run bomber plant during WWII <em>because</em> they couldn't buy in Ann Arbor.</li>
         </ul>
       </div>
     </div>
 
     <div class="ratio-stat">
-      A house in Ann Arbor is worth roughly <strong>2.3&times;</strong> a house in Ypsilanti &mdash; in the <em>same county</em>, 7 miles apart.
+      A house in <strong>Dexter</strong> is worth roughly <strong>2.6&times;</strong> a house in <strong>Ypsilanti</strong> &mdash; same county, same 30-minute radius.
     </div>
 
     <p style="font-size: 0.88rem; color: var(--muted); font-style: italic; margin-top: -0.5rem;">Sources: Zillow Home Value Index, 2024 (approximate medians); U.S. Census Bureau, 2020 demographics.</p>
 
-    <p>That gap didn't fall out of the sky. It was <em>engineered</em> &mdash; by 80 years of covenants, redlining, and steering. The Justice InDeed map you clicked through earlier is one of the blueprints.</p>
+    <div class="callout" style="border-left-color: #8b7341;">
+      <p style="margin: 0;"><strong>The Dexter puzzle.</strong> Here's what's worth sitting with: Dexter doesn't have many covenants on the map, but it looks <em>exactly</em> like the outcome covenants were engineered to produce &mdash; almost entirely white, high property values, the wealth built up over generations. How does that happen without the paperwork?</p>
+      <p style="margin-bottom: 0;">Because <strong>covenants were one tool in a bigger system</strong>. Redlining, "blockbusting," steering by realtors, white flight, and pure price exclusion did the rest. Once Black families were channeled into Ypsilanti and kept out of Ann Arbor, the suburbs out west inherited the pattern &mdash; no covenant required. The Justice InDeed map shows what the <em>legal</em> mechanism looked like. The rest of the machine worked without paperwork.</p>
+    </div>
 
     <h3>Back to the Youngers</h3>
     <p>Look at the dreams inside that $10,000 insurance check:</p>

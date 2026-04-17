@@ -272,6 +272,83 @@
     letter-spacing: 0.03em;
   }
   .pullquote cite::before { content: "\2014 "; }
+
+  /* Wealth gap section */
+  .family-compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin: 1.25rem 0;
+  }
+  @media (max-width: 680px) { .family-compare { grid-template-columns: 1fr; } }
+  .family {
+    background: #fff;
+    padding: 1rem 1.1rem;
+    border-radius: 4px;
+    border-top: 5px solid var(--rule);
+    font-size: 0.94rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+  .family.a { border-top-color: var(--north); }
+  .family.b { border-top-color: var(--accent); }
+  .family h4 { margin: 0 0 0.5rem; font-size: 1rem; }
+  .family.a h4 { color: var(--north); }
+  .family.b h4 { color: var(--accent); }
+  .family ul { margin: 0.5rem 0 0; padding-left: 1.1rem; }
+  .family li { margin-bottom: 0.35rem; line-height: 1.4; }
+
+  .wealth-chart {
+    background: #fff;
+    padding: 1.25rem 1.25rem 1rem;
+    border-radius: 6px;
+    border: 1px solid var(--rule);
+    margin: 1.25rem 0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+  .wealth-chart h4 {
+    margin: 0 0 0.75rem;
+    font-size: 1rem;
+    color: var(--ink);
+  }
+  .wealth-row { margin-bottom: 0.9rem; }
+  .wealth-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.92rem;
+    margin-bottom: 0.3rem;
+  }
+  .wealth-label .amt { font-weight: bold; font-family: Helvetica, Arial, sans-serif; }
+  .wealth-bar {
+    height: 1.7rem;
+    background: #f0ece4;
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .wealth-bar .fill {
+    height: 100%;
+    background: var(--north);
+    transition: width 1.4s ease-out;
+  }
+  .wealth-bar.black-family .fill { background: var(--accent); }
+  .wealth-source {
+    font-size: 0.78rem;
+    color: var(--muted);
+    font-style: italic;
+    margin: 0.6rem 0 0;
+  }
+  .ratio-stat {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 0.9rem 1.1rem;
+    border-radius: 4px;
+    margin: 1rem 0;
+    font-size: 1rem;
+    text-align: center;
+  }
+  .ratio-stat strong {
+    color: #ffd08a;
+    font-size: 1.3rem;
+  }
   .prompt-box h4 {
     margin: 0 0 0.5rem;
     color: var(--accent);
@@ -490,7 +567,7 @@
 
 <header>
   <h1>A Raisin in the Sun &amp; Michigan's Hidden Walls</h1>
-  <p>How did segregation look different in the North? &mdash; A 45&ndash;60 minute inquiry</p>
+  <p>How did segregation look different in the North &mdash; and why does it still shape wealth today? A single-class inquiry (~60 min)</p>
 </header>
 
 <!-- Student info bar (filled by student, carried into PDF) -->
@@ -696,8 +773,81 @@
     </div>
   </section>
 
-  <!-- STEP 5: SYNTHESIS -->
-  <section class="step" data-title="5. Exit Ticket">
+  <!-- STEP 5: THE LONG SHADOW — WEALTH GAP -->
+  <section class="step" data-title="5. The Long Shadow">
+    <span class="timer">~10 min</span>
+    <h2>The Long Shadow: Housing &amp; Wealth Today</h2>
+    <p class="meta">Why this map is not just history</p>
+
+    <p>Here's the part that can feel invisible until someone points at it: <strong>for most American families, the house <em>is</em> the savings account.</strong> When you buy a home and it gains value over decades, that wealth can pass to your kids. When you are <em>blocked</em> from buying a home for 30 years, you miss the single biggest wealth-building machine in U.S. history &mdash; and so do your kids and grandkids.</p>
+
+    <h3>Imagine two families, 1950</h3>
+    <p>Both families have a parent who works as a postal clerk. Both earn the same $3,500 a year. Both want a house in Washtenaw County. Only one is allowed to buy.</p>
+
+    <div class="family-compare">
+      <div class="family a">
+        <h4>Family A (white)</h4>
+        <ul>
+          <li><strong>1950:</strong> Buys a home near the Ann Arbor Country Club for $8,000.</li>
+          <li><strong>1980:</strong> Home is worth ~$80,000. Pays off mortgage. Sends kids to college using home equity loan.</li>
+          <li><strong>2024:</strong> Grandkids inherit a house worth ~$420,000 &mdash; plus decades of built-up equity.</li>
+        </ul>
+      </div>
+      <div class="family b">
+        <h4>Family B (Black)</h4>
+        <ul>
+          <li><strong>1950:</strong> Covenant blocks the same purchase. Family rents an apartment instead.</li>
+          <li><strong>1980:</strong> Rent has been paid faithfully for 30 years. No equity. No deed. No inheritance to pass on.</li>
+          <li><strong>2024:</strong> Grandkids start from zero &mdash; the same place Family A started <em>three generations ago.</em></li>
+        </ul>
+      </div>
+    </div>
+
+    <p>Same income. Same work ethic. Very different grandchildren &mdash; because one family was allowed to ride the housing ladder and the other was handed a rope that stopped halfway up.</p>
+
+    <h3>The gap today</h3>
+
+    <div class="wealth-chart">
+      <h4>Median family wealth in the U.S. (2022)</h4>
+
+      <div class="wealth-row">
+        <div class="wealth-label"><span>Typical white family</span><span class="amt">$285,000</span></div>
+        <div class="wealth-bar"><div class="fill" style="width: 100%;"></div></div>
+      </div>
+
+      <div class="wealth-row">
+        <div class="wealth-label"><span>Typical Black family</span><span class="amt">$45,000</span></div>
+        <div class="wealth-bar black-family"><div class="fill" style="width: 16%;"></div></div>
+      </div>
+
+      <p class="wealth-source">Source: Federal Reserve, 2022 Survey of Consumer Finances. Home equity is the single largest component of most families' wealth.</p>
+    </div>
+
+    <div class="ratio-stat">
+      The typical white family holds about <strong>6&times;</strong> the wealth of the typical Black family &mdash; and housing is the biggest driver of that gap.
+    </div>
+
+    <h3>Back to the Youngers</h3>
+    <p>Look at the dreams inside that $10,000 insurance check:</p>
+    <ul>
+      <li><strong>Mama</strong> wants a house with a yard.</li>
+      <li><strong>Walter Lee</strong> wants to buy into a liquor store &mdash; he calls it his "chance."</li>
+      <li><strong>Beneatha</strong> wants to go to medical school.</li>
+    </ul>
+    <p>Now re-read those dreams with a wealth-gap lens. Mama isn't just picking out curtains. She is trying to step onto the <em>same ladder</em> that white families in Chicago had been climbing for a generation. If the Youngers get that house, it is not only a home &mdash; it is the <em>start</em> of Younger family wealth. If Mr. Lindner's check works, he isn't just stopping a move. He is yanking three generations of future wealth out of their hands before they ever get to hold it.</p>
+
+    <div class="prompt-box">
+      <h4>Write your response</h4>
+      <p>Of the three Younger dreams (Mama's house, Walter's business, Beneatha's medical school) &mdash; which one <em>most</em> depends on owning the house? Which one could still happen without it? What does your answer say about why housing matters so much in this play?</p>
+      <div class="response-box"
+           id="f-wealthgap"
+           contenteditable="true"
+           data-placeholder="Type your response here &mdash; it will be saved to your exit ticket PDF."></div>
+    </div>
+  </section>
+
+  <!-- STEP 6: SYNTHESIS -->
+  <section class="step" data-title="6. Exit Ticket">
     <span class="timer">~8 min</span>
     <h2>Exit Ticket</h2>
     <p class="meta">Write individually &mdash; then generate your PDF and upload to Canvas</p>
@@ -706,7 +856,7 @@
 
     <div class="prompt-box">
       <h4>Prompt</h4>
-      <p>Lorraine Hansberry set <em>A Raisin in the Sun</em> in Chicago, not Alabama. Based on what you learned today &mdash; and what you saw on the map around the <strong>Ann Arbor Country Club</strong> and <strong>Portage Lake</strong> &mdash; why does that matter? What does the Younger family's struggle reveal about segregation in the North that a story set in the Deep South might <em>not</em> show us?</p>
+      <p>Lorraine Hansberry set <em>A Raisin in the Sun</em> in Chicago, not Alabama. Based on what you learned today &mdash; the covenants on the map, Mr. Lindner's polite "offer," and the <strong>6-to-1 wealth gap</strong> that grew out of this system &mdash; why does that setting matter? What does the Younger family's struggle reveal about segregation in the North, and how we still feel its effects today, that a story set in the Deep South might <em>not</em> show us?</p>
       <div class="response-box"
            id="f-exitticket"
            contenteditable="true"
@@ -791,11 +941,15 @@
   <p class="p-prompt">Is Karl Lindner the Northern system wearing a human face?</p>
   <div class="p-answer" id="p-claim"></div>
 
-  <h2>6. Short Response (Exit Ticket)</h2>
+  <h2>6. The Long Shadow: Housing and Wealth</h2>
+  <p class="p-prompt">Of Mama's, Walter's, and Beneatha's dreams, which one most depends on owning the house?</p>
+  <div class="p-answer" id="p-wealthgap"></div>
+
+  <h2>7. Short Response (Exit Ticket)</h2>
   <p class="p-prompt">Why does setting <em>A Raisin in the Sun</em> in Chicago, not Alabama, matter?</p>
   <div class="p-answer" id="p-exitticket"></div>
 
-  <h2>7. Challenge: should the covenants still in our deeds be removed?</h2>
+  <h2>8. Challenge: should the covenants still in our deeds be removed?</h2>
   <div class="p-answer" id="p-challenge"></div>
 
   <div class="p-footer">
@@ -848,7 +1002,7 @@
     'f-row1-street','f-row1-year','f-row1-groups','f-row1-note',
     'f-row2-street','f-row2-year','f-row2-groups','f-row2-note',
     'f-row3-street','f-row3-year','f-row3-groups','f-row3-note'];
-  const FIELDS_RICH = ['f-quickwrite','f-pairdiscussion','f-northsouth','f-claim','f-exitticket','f-challenge'];
+  const FIELDS_RICH = ['f-quickwrite','f-pairdiscussion','f-northsouth','f-claim','f-wealthgap','f-exitticket','f-challenge'];
   const STORAGE_KEY = 'hiddenwalls-v1';
 
   function loadState() {
@@ -903,6 +1057,7 @@
     document.getElementById('p-pairdiscussion').textContent = document.getElementById('f-pairdiscussion').textContent;
     document.getElementById('p-northsouth').textContent = document.getElementById('f-northsouth').textContent;
     document.getElementById('p-claim').textContent = document.getElementById('f-claim').textContent;
+    document.getElementById('p-wealthgap').textContent = document.getElementById('f-wealthgap').textContent;
     document.getElementById('p-exitticket').textContent = document.getElementById('f-exitticket').textContent;
     document.getElementById('p-challenge').textContent = document.getElementById('f-challenge').textContent;
 

@@ -238,6 +238,40 @@
     border-radius: 4px;
     margin: 1rem 0;
   }
+  .pullquote {
+    background: #fff;
+    border-left: 5px solid var(--accent);
+    margin: 1.5rem 0;
+    padding: 1.2rem 1.5rem;
+    font-family: Georgia, serif;
+    position: relative;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+  }
+  .pullquote::before {
+    content: "\201C";
+    position: absolute;
+    top: -0.3rem;
+    left: 0.5rem;
+    font-size: 3.5rem;
+    color: var(--accent);
+    opacity: 0.25;
+    line-height: 1;
+  }
+  .pullquote blockquote {
+    margin: 0 0 0.5rem;
+    font-size: 1.25rem;
+    line-height: 1.4;
+    font-style: italic;
+    color: var(--ink);
+  }
+  .pullquote cite {
+    display: block;
+    font-size: 0.88rem;
+    color: var(--muted);
+    font-style: normal;
+    letter-spacing: 0.03em;
+  }
+  .pullquote cite::before { content: "\2014 "; }
   .prompt-box h4 {
     margin: 0 0 0.5rem;
     color: var(--accent);
@@ -477,6 +511,15 @@
     <p class="meta">Think &mdash; Write &mdash; Share</p>
 
     <p>In <em>A Raisin in the Sun</em>, Mama Younger uses the insurance money to buy a house in <strong>Clybourne Park</strong> &mdash; a white neighborhood in Chicago. Soon after, a man named <strong>Mr. Lindner</strong> visits the family with a very polite offer.</p>
+
+    <p>Here is one of the most famous things Mr. Lindner says to the Youngers:</p>
+
+    <div class="pullquote">
+      <blockquote>&hellip;race prejudice simply doesn't enter into it.</blockquote>
+      <cite>Karl Lindner, <em>A Raisin in the Sun</em>, Act II, Scene 3</cite>
+    </div>
+
+    <p>Hold onto that line. He is the official representative of a neighborhood trying to keep a Black family from moving in&hellip; and he claims race has nothing to do with it. How does that work? That's the puzzle we're about to unpack.</p>
 
     <div class="prompt-box">
       <h4>Quick-write (3 minutes)</h4>

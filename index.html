@@ -142,18 +142,73 @@
   .map-wrap {
     position: relative;
     width: 100%;
-    height: 520px;
+    height: clamp(420px, 60vh, 640px);
     border: 1px solid var(--rule);
     border-radius: 6px;
     overflow: hidden;
     margin: 1rem 0;
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    background: var(--paper);
   }
   .map-wrap iframe {
     width: 100%;
     height: 100%;
     border: 0;
+    display: block;
   }
+  .map-loading {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--paper);
+    z-index: 2;
+    text-align: center;
+    padding: 1rem;
+    transition: opacity 0.3s ease;
+  }
+  .map-loading p { margin: 0.3rem 0; color: var(--muted); font-size: 0.92rem; }
+  .map-loading p.slow { font-size: 0.82rem; font-style: italic; opacity: 0.8; }
+  .map-wrap.loaded .map-loading { opacity: 0; pointer-events: none; }
+  .spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid var(--rule);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 0.9s linear infinite;
+    margin-bottom: 0.75rem;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .map-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 0.9rem;
+    margin: 0.75rem 0 0.5rem;
+    padding: 0.5rem 0.75rem;
+    background: #fff;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    font-size: 0.9rem;
+  }
+  .map-btn {
+    font-family: inherit;
+    font-size: 0.9rem;
+    background: var(--ink);
+    color: var(--paper);
+    border: none;
+    padding: 0.45rem 0.85rem;
+    border-radius: 3px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .map-btn:hover { background: var(--accent); color: #fff; }
+  .map-help { color: var(--muted); font-size: 0.88rem; }
   .map-hint {
     background: #fffbe6;
     border: 1px dashed #c9a227;
@@ -639,11 +694,25 @@
       <p style="margin-top: 0.6rem;"><strong>Inquiry question:</strong> Why do you think the covenants cluster around the <em>country club</em> and the <em>lake</em> &mdash; and not in the middle of town? What does that tell us about <em>who</em> these rules were really written to protect?</p>
     </div>
 
-    <div class="map-wrap">
+    <div class="map-toolbar">
+      <a class="map-btn"
+         href="https://umich.maps.arcgis.com/apps/instant/basic/index.html?appid=7234c85dc96b4ba2b45b20483a69fb18"
+         target="_blank" rel="noopener">🗺️ Open full map in a new tab</a>
+      <span class="map-help">If the map below looks blank, slow, or glitchy, use this link &mdash; it often works better on school Chromebooks.</span>
+    </div>
+
+    <div class="map-wrap" id="map-wrap">
+      <div class="map-loading" aria-hidden="true">
+        <div class="spinner"></div>
+        <p><strong>Loading covenant map&hellip;</strong></p>
+        <p class="slow">First load can take 5&ndash;15 seconds on school devices.</p>
+      </div>
       <iframe
+        id="map-iframe"
         src="https://umich.maps.arcgis.com/apps/instant/basic/index.html?appid=7234c85dc96b4ba2b45b20483a69fb18"
         title="Justice InDeed interactive covenant map"
-        loading="lazy"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allow="fullscreen; geolocation"
         allowfullscreen>
       </iframe>
     </div>
@@ -1010,6 +1079,18 @@
 </section>
 
 <script>
+  // ----- Map iframe loading state -----
+  (function() {
+    const wrap = document.getElementById('map-wrap');
+    const iframe = document.getElementById('map-iframe');
+    if (!wrap || !iframe) return;
+    const markLoaded = () => wrap.classList.add('loaded');
+    iframe.addEventListener('load', markLoaded);
+    // Safety: if the iframe never fires 'load' (blocked, etc.), dismiss the
+    // spinner after 20s so students aren't staring at it forever.
+    setTimeout(markLoaded, 20000);
+  })();
+
   // ----- Step navigation -----
   const steps = document.querySelectorAll('section.step');
   const nav = document.getElementById('nav');

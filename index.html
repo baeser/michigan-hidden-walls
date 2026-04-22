@@ -209,6 +209,38 @@
   }
   .map-btn:hover { background: var(--accent); color: #fff; }
   .map-help { color: var(--muted); font-size: 0.88rem; }
+
+  /* Lindner close-reading cards */
+  .analysis-cards {
+    display: grid;
+    gap: 1rem;
+    margin: 1.25rem 0;
+  }
+  .analysis-card {
+    background: #fff;
+    border: 1px solid var(--rule);
+    border-left: 4px solid var(--accent);
+    border-radius: 4px;
+    padding: 1rem 1.25rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .analysis-card .move {
+    display: block;
+    font-size: 0.74rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.1rem;
+  }
+  .analysis-card h4 {
+    margin: 0 0 0.5rem;
+    font-size: 1.05rem;
+    color: var(--accent);
+  }
+  .analysis-card p {
+    margin: 0.4rem 0 0.5rem;
+    font-size: 0.95rem;
+  }
   .map-hint {
     background: #fffbe6;
     border: 1px dashed #c9a227;
@@ -576,6 +608,15 @@
     text-transform: uppercase;
     letter-spacing: 0.06em;
   }
+  #printable h3 {
+    color: #333;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 9.5pt;
+    margin: 10px 0 2px;
+    font-weight: bold;
+    border: none;
+    padding: 0;
+  }
   #printable .p-prompt {
     font-size: 9pt;
     font-style: italic;
@@ -818,28 +859,52 @@
 
     <p>Turn to the scene in <strong>Act II, Scene 3</strong> where Karl Lindner visits the Younger apartment. Have your book open to his first long speech &mdash; the one where he explains why he came.</p>
 
-    <h3>Annotate as you re-read</h3>
-    <p>With a partner, find and <strong>underline or mark</strong> examples of these moves in Lindner's dialogue:</p>
+    <h3>Look closely at Lindner's speech</h3>
+    <p><strong>Because you have library copies, don't mark up the book.</strong> Instead, as you re-read Lindner's speech, look for each of the four rhetorical moves below and type your analysis right under each one. Everything you write here will be saved to your exit ticket PDF.</p>
 
-    <details class="reveal">
-      <summary>1. Polite language hiding an exclusion</summary>
-      <p>Lindner never says "Black people can't live here." How does he say it instead? What words does he use for the Youngers? For Clybourne Park?</p>
-    </details>
+    <div class="analysis-cards">
 
-    <details class="reveal">
-      <summary>2. An appeal to "the community"</summary>
-      <p>He talks about what "our people" want, what "people get awful worked up" about. Who counts as "people" in his sentences? Who doesn't?</p>
-    </details>
+      <div class="analysis-card">
+        <span class="move">Move 1</span>
+        <h4>Polite language hiding an exclusion</h4>
+        <p>Lindner never says "Black people can't live here." He says it a softer way &mdash; notice phrases like <em>"our Negro families,"</em> <em>"happier,"</em> <em>"their own communities."</em> Find one moment where his language sounds polite but is really an exclusion. What would it sound like if he said what he actually meant?</p>
+        <div class="response-box"
+             id="f-lindner1"
+             contenteditable="true"
+             data-placeholder="Type your analysis here."></div>
+      </div>
 
-    <details class="reveal">
-      <summary>3. A financial offer instead of a threat</summary>
-      <p>Lindner doesn't bring a mob. He brings a checkbook. Why is that arguably <em>more insulting</em> to the Youngers &mdash; and more dangerous as a system?</p>
-    </details>
+      <div class="analysis-card">
+        <span class="move">Move 2</span>
+        <h4>An appeal to "the community"</h4>
+        <p>Lindner talks about what "our people" want, and what "people get awful worked up" about. Find a moment where he says "we," "our," or "people." Who counts as "people" in his sentences? Who doesn't?</p>
+        <div class="response-box"
+             id="f-lindner2"
+             contenteditable="true"
+             data-placeholder="Type your analysis here."></div>
+      </div>
 
-    <details class="reveal">
-      <summary>4. The word "association"</summary>
-      <p>Lindner represents the "Clybourne Park Improvement Association." Go back to the map you just explored. How were the covenants in Washtenaw County <em>also</em> often written and enforced by neighborhood "associations"? What does that word hide?</p>
-    </details>
+      <div class="analysis-card">
+        <span class="move">Move 3</span>
+        <h4>A financial offer instead of a threat</h4>
+        <p>Lindner doesn't bring a mob. He brings a checkbook &mdash; an offer to <em>buy the house back</em> from the Youngers at a profit. Why is an offer like that arguably <strong>more insulting</strong> than a threat? And why is it more dangerous as a <em>system</em>?</p>
+        <div class="response-box"
+             id="f-lindner3"
+             contenteditable="true"
+             data-placeholder="Type your analysis here."></div>
+      </div>
+
+      <div class="analysis-card">
+        <span class="move">Move 4</span>
+        <h4>The word "association"</h4>
+        <p>Lindner represents the <em>"Clybourne Park Improvement Association."</em> Go back to the map in Step 2. Many of the covenants in Washtenaw County were also written and enforced by neighborhood "associations" and "improvement clubs." What does the word <strong>"association"</strong> hide? Why is that word doing so much work in both the play <em>and</em> the map?</p>
+        <div class="response-box"
+             id="f-lindner4"
+             contenteditable="true"
+             data-placeholder="Type your analysis here."></div>
+      </div>
+
+    </div>
 
     <div class="prompt-box">
       <h4>Claim to defend</h4>
@@ -1057,7 +1122,21 @@
   <p class="p-prompt">(Hint: think about what a protest sign needs to point at.)</p>
   <div class="p-answer" id="p-northsouth"></div>
 
-  <h2>5. Claim to Defend</h2>
+  <h2>5. Lindner Close Reading (Act II, Scene 3)</h2>
+
+  <h3>5a. Polite language hiding an exclusion</h3>
+  <div class="p-answer" id="p-lindner1"></div>
+
+  <h3>5b. An appeal to "the community"</h3>
+  <div class="p-answer" id="p-lindner2"></div>
+
+  <h3>5c. A financial offer instead of a threat</h3>
+  <div class="p-answer" id="p-lindner3"></div>
+
+  <h3>5d. The word "association"</h3>
+  <div class="p-answer" id="p-lindner4"></div>
+
+  <h3>5e. Claim to Defend</h3>
   <p class="p-prompt">Is Karl Lindner the Northern system wearing a human face?</p>
   <div class="p-answer" id="p-claim"></div>
 
@@ -1134,7 +1213,9 @@
     'f-row1-street','f-row1-year','f-row1-groups','f-row1-note',
     'f-row2-street','f-row2-year','f-row2-groups','f-row2-note',
     'f-row3-street','f-row3-year','f-row3-groups','f-row3-note'];
-  const FIELDS_RICH = ['f-quickwrite','f-pairdiscussion','f-northsouth','f-claim','f-wealthgap','f-exitticket','f-challenge'];
+  const FIELDS_RICH = ['f-quickwrite','f-pairdiscussion','f-northsouth',
+    'f-lindner1','f-lindner2','f-lindner3','f-lindner4',
+    'f-claim','f-wealthgap','f-exitticket','f-challenge'];
   const STORAGE_KEY = 'hiddenwalls-v1';
 
   function loadState() {
@@ -1188,6 +1269,10 @@
     document.getElementById('p-quickwrite').textContent = document.getElementById('f-quickwrite').textContent;
     document.getElementById('p-pairdiscussion').textContent = document.getElementById('f-pairdiscussion').textContent;
     document.getElementById('p-northsouth').textContent = document.getElementById('f-northsouth').textContent;
+    document.getElementById('p-lindner1').textContent = document.getElementById('f-lindner1').textContent;
+    document.getElementById('p-lindner2').textContent = document.getElementById('f-lindner2').textContent;
+    document.getElementById('p-lindner3').textContent = document.getElementById('f-lindner3').textContent;
+    document.getElementById('p-lindner4').textContent = document.getElementById('f-lindner4').textContent;
     document.getElementById('p-claim').textContent = document.getElementById('f-claim').textContent;
     document.getElementById('p-wealthgap').textContent = document.getElementById('f-wealthgap').textContent;
     document.getElementById('p-exitticket').textContent = document.getElementById('f-exitticket').textContent;
